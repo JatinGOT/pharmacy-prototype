@@ -53,9 +53,9 @@ def page_scanner():
                 load(lines)
                 if not lines:
                     st.warning("No text was found. Try a clearer, brighter, straight-on photo, or use the paste option above.")
-            except ImportError:
-                st.error("The free scanning tool is not installed. Run:  pip install rapidocr-onnxruntime  "
-                         "(see README), or use the paste option above.")
+            except ImportError as e:
+                    st.error("The free scanning tool could not start. Use the paste option above for now.")
+                    st.code(str(e))
             except Exception as e:
                 st.error(f"Sorry, this image could not be read ({e}). Please try another photo.")
         with st.expander("Show original image (compare with the table below)", expanded=True):
